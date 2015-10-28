@@ -17,10 +17,11 @@ match result with
     printfn ""
     printfn "Please meditate on the following code:"
     printfn "%s" ex.StackTrace
-    
+   
 printfn ""
 printfn ""
 printfn ""
 printfn ""
-printf "Press any key to continue..."
-System.Console.ReadKey() |> ignore
+// Removed to run in my FAKE file watcher
+//printf "Press any key to continue..."
+//System.Console.ReadKey() |> ignore
