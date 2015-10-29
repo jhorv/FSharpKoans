@@ -19,7 +19,7 @@ module ``about looping`` =
         for value in values do
             sum <- sum + value
 
-        AssertEquality sum __
+        AssertEquality sum (Seq.sum [0..10])
        
     [<Koan>]
     let LoopingWithExpressions() =
@@ -28,7 +28,7 @@ module ``about looping`` =
         for i = 1 to 5 do
             sum <- sum + i
 
-        AssertEquality sum __
+        AssertEquality sum (Seq.sum [1..5])
 
     [<Koan>]
     let LoopingWithWhile() =
@@ -37,7 +37,12 @@ module ``about looping`` =
         while sum < 10 do
             sum <- sum + sum
 
-        AssertEquality sum __
+        // TODO - I don't really consider this a proper answer!
+        let answer =
+            [1..10]
+            |> Seq.reduce (fun acc x -> if acc < 10 then acc + acc else acc)
+        
+        AssertEquality sum answer
 
     (* NOTE: While these looping constructs can come in handy from time to time,
              it's often better to use a more functional approach for looping

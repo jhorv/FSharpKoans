@@ -58,8 +58,25 @@ module ``about the stock example`` =
     // tests for yourself along the way. You can also try 
     // using the F# Interactive window to check your progress.
 
+    let splitCommas (x:string) = x.Split(',')
+
+    let parseLine (x:string) =
+        let parts = x.Split(',')
+        let date = parts.[0]
+        let o = float parts.[1]
+        let c = float parts.[4]
+        let distance = abs (o - c)
+        (date, distance)
+
+    let myResult =
+        stockData
+        |> Seq.skip 1
+        |> Seq.map parseLine
+        |> Seq.maxBy snd
+        |> fst
+
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
+        let result =  myResult
         
         AssertEquality "2012-03-13" result
